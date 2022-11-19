@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 
 export const StyledFormContainer = styled.div`
-    width:700px;
-    padding-top: 25px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-left: auto;
-    
-    /* display: flex;
+  width: 700px;
+  padding-top: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: auto;
+
+  /* display: flex;
     justify-content: flex-end; */
 `;
 
@@ -71,5 +71,5 @@ export const StyledButton = styled.button`
 `;
 
 export const StyleText = styled.p`
-    font-size: 20px;
+  font-size: 20px;
 `;

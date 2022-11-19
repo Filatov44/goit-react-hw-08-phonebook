@@ -28,10 +28,10 @@ export default function LoginForm({ onSubmit }) {
        const { name, value } = e.target;
 
        switch (name) {
-         case 'name':
+         case 'email':
            setEmail(value);
            break;
-         case 'number':
+         case 'password':
            setPassword(value);
            break;
          default:
