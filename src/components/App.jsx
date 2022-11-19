@@ -9,7 +9,7 @@ import { getLoadingUserStatus } from 'redux/auth-selector';
 import Layout from './Layout/Layout';
 import HomePage from 'pages/HomePage/HomePage';
 import { Loader } from './Loader/Loader';
-
+import NotFoundPage from 'pages/NotFoundPage/NotFoundPage';
 
 const LoginPage = lazy(() => import('pages/LoginPage/LoginPage'));
 const SignUpPage = lazy(() => import('pages/SignUpPage/SignUpPage'));
@@ -40,10 +40,10 @@ export const App = () => {
                 <Route path="contacts" element={<ContactPage />} />
               </Route>
             </Route>
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Suspense>
       )}
-     
     </>
   );
 };
