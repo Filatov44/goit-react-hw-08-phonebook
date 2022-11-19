@@ -1,35 +1,49 @@
 import React, { useEffect } from 'react';
-// import Phonebook from './Phonebook/Phonebook';
-// import { StyledAppWrapper } from 'App.styled';
-import { useDispatch } from 'react-redux';
+import { lazy, Suspense } from 'react';
+import PrivateRoute from './PrivateRoute/PrivateRoute';
+import PublicRoute from './PublicRoute/PublicRoute';
+import { useDispatch, useSelector } from 'react-redux';
 import { current } from 'redux/auth-operation';
 import { Route, Routes } from 'react-router-dom';
+import { getLoadingUserStatus } from 'redux/auth-selector';
 import Layout from './Layout/Layout';
 import HomePage from 'pages/HomePage/HomePage';
-import LoginPage from 'pages/LoginPage/LoginPage';
-import SignUpPage from 'pages/SignUpPage/SignUpPage';
+import { Loader } from './Loader/Loader';
+
+
+const LoginPage = lazy(() => import('pages/LoginPage/LoginPage'));
+const SignUpPage = lazy(() => import('pages/SignUpPage/SignUpPage'));
+const ContactPage = lazy(() => import('pages/ContactPage/ContactPage'));
 
 export const App = () => {
-
   const dispatch = useDispatch();
+  const isLoadingUser = useSelector(getLoadingUserStatus);
 
   useEffect(() => {
     dispatch(current());
   }, [dispatch]);
 
-
   return (
     <>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<HomePage />} />
-          <Route path="login" element={<LoginPage />} />
-          <Route path="register" element={<SignUpPage/> } />
-          {/* <StyledAppWrapper>
-          <Phonebook />
-        </StyledAppWrapper> */}
-        </Route>
-      </Routes>
+      {isLoadingUser ? (
+        <Loader />
+      ) : (
+        <Suspense fallback={<Loader />}>
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route index element={<HomePage />} />
+              <Route element={<PublicRoute />}>
+                <Route path="login" element={<LoginPage />} />
+                <Route path="register" element={<SignUpPage />} />
+              </Route>
+              <Route element={<PrivateRoute />}>
+                <Route path="contacts" element={<ContactPage />} />
+              </Route>
+            </Route>
+          </Routes>
+        </Suspense>
+      )}
+     
     </>
   );
 };

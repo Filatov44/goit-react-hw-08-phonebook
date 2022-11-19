@@ -7,6 +7,7 @@ export const StyledContactForm = styled.form`
 `;
 
 export const StyledLabel = styled.label`
+    font-size: 20px;
     color: blue;
 `;
 

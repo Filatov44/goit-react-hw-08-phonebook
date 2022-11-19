@@ -1,26 +1,19 @@
-import LoginForm from "components/LoginForm/LoginForm";
-import { StyledLoginPageContainer } from "./LoginPage.styled";
-import { useSelector, useDispatch } from "react-redux";
-import { login } from "redux/auth-operation";
-import { islogin } from "redux/auth-selector";
-import { Navigate } from "react-router-dom";
+import LoginForm from 'components/LoginForm/LoginForm';
+import { StyledLoginPageContainer } from './LoginPage.styled';
+import { useDispatch } from 'react-redux';
+
+import { login } from 'redux/auth-operation';
 
 export default function LoginPage() {
+  const dispatch = useDispatch();
 
-    const isLogined = useSelector(islogin);
-    const dispatch = useDispatch();
+  const handleSubmit = data => {
+    dispatch(login(data));
+  };
 
-    const handleSubmit = data => {
-        dispatch(login(data));
-    };
-
-    if (isLogined) {
-        return <Navigate to="/contacts"/>
-    };
-
-    return (
-        <StyledLoginPageContainer>
-            <LoginForm onSubmit={handleSubmit} />
-        </StyledLoginPageContainer>
-    );
-};
+  return (
+    <StyledLoginPageContainer>
+      <LoginForm onSubmit={handleSubmit} />
+    </StyledLoginPageContainer>
+  );
+}

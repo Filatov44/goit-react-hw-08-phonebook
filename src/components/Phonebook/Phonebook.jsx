@@ -13,6 +13,7 @@ import {
   StyledPhonebookContainer,
   StyledPhonebookTitle,
   StyledTitleContact,
+  StyledPhonebookWrapper,
 } from 'components/Phonebook/Phonebook.styled';
 
 import ContactForm from './ContactForm/ContactForm';
@@ -50,23 +51,24 @@ export default function Phonebook() {
         draggable
         pauseOnHover
       />
-      <StyledPhonebookContainer>
-        <StyledPhonebookTitle> Phonebook</StyledPhonebookTitle>
-        <ErrorBoundary>
-          <ContactForm />
-        </ErrorBoundary>
-        <StyledTitleContact>Contacts</StyledTitleContact>
-        <ErrorBoundary>
-          
-          <Filter />
-          {!loading && contacts.length > 0 ? (
-            <ContactList />
-          ) : (
-            <Message text="Contact list is empty" />
-          )}
-          {error && <p>sory, something went wrong</p>}
-        </ErrorBoundary>
-      </StyledPhonebookContainer>
+      <StyledPhonebookWrapper>
+        <StyledPhonebookContainer>
+          <StyledPhonebookTitle> Phonebook</StyledPhonebookTitle>
+          <ErrorBoundary>
+            <ContactForm />
+          </ErrorBoundary>
+          <StyledTitleContact>Contacts</StyledTitleContact>
+          <ErrorBoundary>
+            <Filter />
+            {!loading && contacts.length > 0 ? (
+              <ContactList />
+            ) : (
+              <Message text="Contact list is empty" />
+            )}
+            {error && <p>sory, something went wrong</p>}
+          </ErrorBoundary>
+        </StyledPhonebookContainer>
+      </StyledPhonebookWrapper>
     </>
   );
 }

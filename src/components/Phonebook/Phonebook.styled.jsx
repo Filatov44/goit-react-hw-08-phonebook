@@ -26,6 +26,8 @@ export const StyledPhonebookContainer = styled.div`
   padding: 15px;
   border: 2px solid black;
   border-radius: 25px;
+  /* background-image: url('https://img.freepik.com/free-photo/closeup-concrete-wall-texture-background_1017-24490.jpg?w=2000'); */
+  background-image: url('https://image.winudf.com/v2/image/Y29tLlBSSVNTSS5XYWxscGFwZXIuQmFja2dyb3VuZC5XaGl0ZUJhY2tncm91bmRXYWxscGFwZXJfc2NyZWVuXzBfMTUyODUwODAxNF8wNjk/screen-0.jpg?fakeurl=1&type=.webp');
 `;
 export const StyledPhonebookTitle = styled.h1`
   font-size: 28px;
@@ -37,4 +39,10 @@ export const StyledTitleContact = styled.h2`
   font-size: 24px;
   color: blue;
   text-align: center;
+`;
+
+export const StyledPhonebookWrapper = styled.div`
+  display: flex;
+  height: 100vh;
+  background-color: #e8e8e8;
 `;
